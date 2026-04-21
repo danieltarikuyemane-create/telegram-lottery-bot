@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: amu-lottery-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python lottery_bot.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    disks:
+      - name: lottery-data
+        mountPath: /opt/render/project/src
+        sizeGB: 1

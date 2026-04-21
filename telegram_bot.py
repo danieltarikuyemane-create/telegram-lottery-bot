@@ -5,7 +5,23 @@ import os
 from datetime import datetime
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
+from flask import Flask
+from threading import Thread
 
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run():
+    # This uses the port Render provides automatically
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
 # --- CONFIG ---
 TOKEN = "7930881679:AAGFmtN3amkVzz-bd4C_uQW8qYbyoeUAOSM"
 ADMIN_ID = 7742927843
@@ -788,3 +804,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    keep_alive()

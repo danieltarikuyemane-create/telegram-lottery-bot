@@ -779,6 +779,7 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("admin", admin_panel))
     app.add_handler(CallbackQueryHandler(button_handler))
+   
     
     print("=" * 60)
     print("🚀 AMU LOTTERY BOT RUNNING!")
@@ -799,9 +800,12 @@ def main():
     print("   6. Admin will get APPROVE button")
     print("   7. Click APPROVE - User gets ticket number")
     print("=" * 60)
-    
-    app.run_polling()
-
+     app.run_polling(drop_pending_updates=True)
 if __name__ == "__main__":
-    keep_alive()  # Start the web server first
-    main()        # Then start the bot
+    import threading
+    
+    # 1. Start the Flask web server in the background
+    threading.Thread(target=keep_alive, daemon=True).start()
+    
+    # 2. Start the bot
+    main()

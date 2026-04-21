@@ -803,5 +803,5 @@ def main():
     app.run_polling()
 
 if __name__ == "__main__":
-    main()
-    keep_alive()
+    keep_alive()  # Start the web server first
+    main()        # Then start the bot

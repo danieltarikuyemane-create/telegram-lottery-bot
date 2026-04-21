@@ -23,7 +23,7 @@ def keep_alive():
     t = Thread(target=run)
     t.start()
 # --- CONFIG ---
-TOKEN = "7930881679:AAGFmtN3amkVzz-bd4C_uQW8qYbyoeUAOSM"
+TOKEN = os.environ.get('BOT_TOKEN')
 ADMIN_ID = 7742927843
 CBE_ACCOUNT = "1000381194853"
 ADMIN_USERNAME = "@zezitwa"
